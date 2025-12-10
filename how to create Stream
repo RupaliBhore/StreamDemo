@@ -1,0 +1,34 @@
+
+         //convert list into Stream      create stream using Stream() function
+List<String> names=Arrays.asList('rupali','bpb');
+Stream<String> stream=names.Stream();
+
+
+//Convert Array into Stream       create arrays stream using Arrays.Stream() function
+String[] arr={"java","paython",c++};
+Stream<String> stream1=Arrays.stream(arr);
+
+
+//create Stream of integer               create integer stream using Stream.of() function
+Stream<Integer> integerStream=Stream.of(1,2,3,4,5);
+
+//by using stream generate method u can create stream it gives result in double
+Sream<Double> limit=Stream.generate(Math::random).limit(5);
+
+
+//how to convert primitive array into stream
+int[]  primitiveArray={1,2,3,4};
+final IntStream intStream=Arrays.stream(primitiveArray);
+intStream.forEach(System.out.::println);       //foreach terminal operation
+
+
+
+//convert object type into stream
+Integer[] objectArray={1,2,3,4};
+final Stream<Integer> intIntegerStream=Stream.of(objectArra);
+intIntegerStream.forEach(System.out::println);
+
+///collections into Stream  using only Stream method
+List<Integer> integerList=Arrays.asList(1,2,3,4);
+integerList.stream().forEach(System.out::println);
+
