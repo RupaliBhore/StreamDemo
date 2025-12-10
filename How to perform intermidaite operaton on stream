@@ -1,0 +1,112 @@
+Filter=====filter take predicate as a argument predicate is functional interface kind of condition
+
+List<Integer> numbers=Arrays.asList(1,2,3,4,5};
+numbers.stream()
+              .filter(n -> n%2==0)        //eelemt ko filter karake deta he
+              .forEach(System.out::println);
+
+______________________________________________________________________MAP**********************************
+map== map transform the element take one data and convert into another data
+map will take function as input
+
+List<String> names=Arrays.asList("bob","alice","lol");
+
+names.stream().map(String::toUpperCase).forEach(System.out::println);
+
+
+________________________________________________REDUCE is terminal operation-----------------------------------------------------------------------
+Reduce===== using reduce collection into one elemet  perform operation on entire stream and reduce to one emelet
+
+List<Integer> list=Arrays.asList(1,2,3,4,5);
+
+final Integer sum=list.stream().reduce(0(a,b) ->a+b);
+System.out.println(sum);
+
+
+***********************************************flatMap**************************************
+when you have complex data sturure use flatMap to flatting(sapat karne) your data
+ite apalaya kade list of list data ahe mhnje eka list madhe dusari list ahe tycha var uppercase he fuction cll karyach ahe kas karal
+package Streams;
+
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FlatMapExample {
+    public static void main(String[] args) {
+        List<List<String>> listOfLists = Arrays.asList(
+                Arrays.asList("a", "b"),
+                Arrays.asList("c", "d"),
+                Arrays.asList("e", "f")
+        );
+        listOfLists.stream()
+                .flatMap(Collection::stream)
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+    }
+}
+
+**************************************peek
+peek does not perform any operations just u print elemt
+public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        final List<Integer> sqaredList = numbers.stream()
+                .map(n -> n * n)
+                .peek(System.out::println)
+                .collect(Collectors.toList());
+
+*************************************************************distnct
+filter out distinct dupicate elemt print only uniqe elemt
+public class DistinctExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 2, 3, 4, 4, 5);
+
+        numbers.stream()
+                .distinct()
+                .forEach(System.out::println);
+    }
+
+*****************************************************sorted
+natureally sort in aceding order  for decending order use comaprator
+public class SortedExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(5, 3, 1, 4, 2);
+
+        numbers.stream().
+                sorted(Comparator.reverseOrder()).
+                forEach(System.out::println);
+
+        List<String> words =
+                Arrays.asList("apple", "banana", "kiwi", "cherry");
+
+        List<String> sortedWordsByLength = words.stream()
+                .sorted(Comparator.comparingInt(String::length)     //string cha length nusar sort kara
+                        .reversed())
+                .toList();
+        sortedWordsByLength.forEach(System.out::println);
+
+    }
+
+
+*******************************************************skip 
+skip the elemet
+
+public class SkipExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        final List<Integer> listAfterSkip = numbers.stream()
+                .skip(2)                                           //kiti elemt skip karayche ahet te liha
+                .collect(Collectors.toList());
+        System.out.println(listAfterSkip);
+
+*****************************************************************limit
+limit how to elemt you want print
+public class LimitExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        numbers.stream()
+                .limit(3)    //3 ch elemt print hotil block rest of elemt
+                .forEach(System.out::println);
+    }
